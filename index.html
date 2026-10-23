@@ -1,125 +1,106 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="nl">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px '.AppleSystemUIFontMonospaced'; color: #e1e4e5; -webkit-text-stroke: #e1e4e5}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px '.AppleSystemUIFontMonospaced'; color: #e1e4e5; -webkit-text-stroke: #e1e4e5; background-color: #000000}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px '.AppleSystemUIFontMonospaced'; color: #e1e4e5; -webkit-text-stroke: #e1e4e5; min-height: 18.0px}
-    span.s1 {font-kerning: none; background-color: #000000}
-    span.s2 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDB Trading Strategie</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #2d3748; }
+        h1 { color: #1a365d; text-align: center; border-bottom: 3px solid #2c5282; padding-bottom: 10px; }
+        h2 { color: #2c5282; margin-top: 30px; border-left: 4px solid #2c5282; padding-left: 12px; }
+        h3 { color: #2d3748; }
+        .chart { margin: 20px 0; text-align: center; }
+        .chart img { max-width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; }
+        .chart-caption { font-style: italic; color: #718096; font-size: 0.9em; margin-top: 8px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .disclaimer { font-size: 0.85em; color: #718096; text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+        .highlight { background: #ebf8ff; padding: 12px; border-radius: 6px; margin: 15px 0; }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="nl"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;JDB Trading Strategie&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #2d3748; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>h1 { color: #1a365d; text-align: center; border-bottom: 3px solid #2c5282; padding-bottom: 10px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>h2 { color: #2c5282; margin-top: 30px; border-left: 4px solid #2c5282; padding-left: 12px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>h3 { color: #2d3748; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.chart { margin: 20px 0; text-align: center; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.chart img { max-width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.chart-caption { font-style: italic; color: #718096; font-size: 0.9em; margin-top: 8px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ul { padding-left: 20px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>li { margin-bottom: 6px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.disclaimer { font-size: 0.85em; color: #718096; text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.highlight { background: #ebf8ff; padding: 12px; border-radius: 6px; margin: 15px 0; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;JDB Trading Strategie&lt;/h1&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;p style="text-align:center; color:#4a5568;"&gt;Volledige samenvatting met illustratieve charts van @JDB_trading&lt;/p&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Overzicht&lt;/h2&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;p&gt;De JDB-strategie is gericht op het traden van &lt;strong&gt;kruispunten&lt;/strong&gt; met een sterke focus op risk/reward en money management. JDB werkt bijna uitsluitend met langere timeframes (week- en maandgrafieken).&lt;/p&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Gebruikte indicatoren&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;SMA/EMA 20, 50 en 200&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Bollinger Bands&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Fibonacci retracement (vooral 50% en 61.8%)&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;RSI (voor divergenties)&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Prijsactie (blow-off tops / puntdak, parabolische moves)&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;div class="highlight"&gt;De strategie bestaat uit &lt;strong&gt;4 componenten&lt;/strong&gt;. Component 1 en 2 zijn het meest geschikt voor beginners.&lt;/div&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;1. Dominante MA-component&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Regels voor een valide set-up&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Zoek de &lt;strong&gt;dominante MA&lt;/strong&gt; op het &lt;strong&gt;dominante timeframe&lt;/strong&gt; (week of maand).&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Voorkeur: &lt;strong&gt;MA20&lt;/strong&gt; → groot gat naar de MA200.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Minimaal &lt;strong&gt;70 candles&lt;/strong&gt; boven de dominante MA in een bullmarket (40 in bearmarket), met meerdere raakpunten.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Hoe langer de prijs boven/onder de kortste MA zit, hoe sterker de tegengestelde beweging bij een breuk.&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Entries&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;Doorbraak&lt;/strong&gt; van de dominante MA (slotcandle telt).&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;Pullback&lt;/strong&gt; naar de dominante MA (intraday).&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Targets &amp; Stoploss&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Breekt MA20 → doel MA50. Breekt MA50 → doel MA200.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Bij doorbraak eerst ruimere stop, daarna meeschuiven met de MA.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Bij pullback: stop direct een stukje buiten de MA.&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="chart"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="https://pbs.twimg.com/media/HA9cKCaWUAAZR7b.png" alt="Nasdaq dominante MA"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="chart-caption"&gt;Nasdaq 2021/2022 week – EMA20 (groen) dominant, groot gat naar EMA200 (rood).&lt;/div&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;2. Retracement-strategie (favoriet)&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;Alleen toepassen na een &lt;strong&gt;blow-off top&lt;/strong&gt; en/of doorbraak dominante MA. Nooit zomaar in een bullmarket.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;Entry short&lt;/strong&gt;: exact op &lt;strong&gt;50%&lt;/strong&gt;.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;Stoploss&lt;/strong&gt;: stukje boven 61.8% (±70%).&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;strong&gt;Target&lt;/strong&gt;: altijd de &lt;strong&gt;MA200&lt;/strong&gt;.&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="chart"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="https://pbs.twimg.com/media/G1Nu7zIW8AAQBYi.png" alt="NVDA retracement"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="chart-caption"&gt;NVDA – blow-off top + Fibonacci. Entry op 50%, SL boven 61.8%.&lt;/div&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;3. Bollinger Bands&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Long op onderkant in bullmarket / short op bovenkant in bearmarket.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Stop een stukje buiten de band. Meer ervaring nodig.&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;4. Divergenties&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Meest speculatief. Bij voorkeur met opties spelen.&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Money Management&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Verliezen snel beperken, winsten laten lopen.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Positiegrootte afstemmen op max risico.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Bij +50% boven SL: deel winst nemen of stop opschuiven.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Kers &amp; taart: aandelen/futures + opties.&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;li&gt;Nooit big losses.&lt;/li&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Timeframe&lt;/h2&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">    </span>&lt;p&gt;Gebruik vooral de &lt;strong&gt;week- en maandgrafiek&lt;/strong&gt;.&lt;/p&gt;</span></p>
-<p class="p3"><span class="s2"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="disclaimer"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>Samenvatting gebaseerd op posts van @JDB_trading.&lt;br&gt;Geen financieel advies.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+    <h1>JDB Trading Strategie</h1>
+    <p style="text-align:center; color:#4a5568;">Volledige samenvatting met illustratieve charts van @JDB_trading</p>
+
+    <h2>Overzicht</h2>
+    <p>De JDB-strategie is gericht op het traden van <strong>kruispunten</strong> met een sterke focus op risk/reward en money management. JDB werkt bijna uitsluitend met langere timeframes (week- en maandgrafieken).</p>
+
+    <h3>Gebruikte indicatoren</h3>
+    <ul>
+        <li>SMA/EMA 20, 50 en 200</li>
+        <li>Bollinger Bands</li>
+        <li>Fibonacci retracement (vooral 50% en 61.8%)</li>
+        <li>RSI (voor divergenties)</li>
+        <li>Prijsactie (blow-off tops / puntdak, parabolische moves)</li>
+    </ul>
+
+    <div class="highlight">De strategie bestaat uit <strong>4 componenten</strong>. Component 1 en 2 zijn het meest geschikt voor beginners.</div>
+
+    <h2>1. Dominante MA-component</h2>
+    <h3>Regels voor een valide set-up</h3>
+    <ul>
+        <li>Zoek de <strong>dominante MA</strong> op het <strong>dominante timeframe</strong> (week of maand).</li>
+        <li>Voorkeur: <strong>MA20</strong> → groot gat naar de MA200.</li>
+        <li>Minimaal <strong>70 candles</strong> boven de dominante MA in een bullmarket (40 in bearmarket), met meerdere raakpunten.</li>
+        <li>Hoe langer de prijs boven/onder de kortste MA zit, hoe sterker de tegengestelde beweging bij een breuk.</li>
+    </ul>
+
+    <h3>Entries</h3>
+    <ul>
+        <li><strong>Doorbraak</strong> van de dominante MA (slotcandle telt).</li>
+        <li><strong>Pullback</strong> naar de dominante MA (intraday).</li>
+    </ul>
+
+    <h3>Targets & Stoploss</h3>
+    <ul>
+        <li>Breekt MA20 → doel MA50. Breekt MA50 → doel MA200.</li>
+        <li>Bij doorbraak eerst ruimere stop, daarna meeschuiven met de MA.</li>
+        <li>Bij pullback: stop direct een stukje buiten de MA.</li>
+    </ul>
+
+    <div class="chart">
+        <img src="https://pbs.twimg.com/media/HA9cKCaWUAAZR7b.png" alt="Nasdaq dominante MA">
+        <div class="chart-caption">Nasdaq 2021/2022 week – EMA20 (groen) dominant, groot gat naar EMA200 (rood).</div>
+    </div>
+
+    <h2>2. Retracement-strategie (favoriet)</h2>
+    <p>Alleen toepassen na een <strong>blow-off top</strong> en/of doorbraak dominante MA. Nooit zomaar in een bullmarket.</p>
+    <ul>
+        <li><strong>Entry short</strong>: exact op <strong>50%</strong>.</li>
+        <li><strong>Stoploss</strong>: stukje boven 61.8% (±70%).</li>
+        <li><strong>Target</strong>: altijd de <strong>MA200</strong>.</li>
+    </ul>
+
+    <div class="chart">
+        <img src="https://pbs.twimg.com/media/G1Nu7zIW8AAQBYi.png" alt="NVDA retracement">
+        <div class="chart-caption">NVDA – blow-off top + Fibonacci. Entry op 50%, SL boven 61.8%.</div>
+    </div>
+
+    <h2>3. Bollinger Bands</h2>
+    <ul>
+        <li>Long op onderkant in bullmarket / short op bovenkant in bearmarket.</li>
+        <li>Stop een stukje buiten de band. Meer ervaring nodig.</li>
+    </ul>
+
+    <h2>4. Divergenties</h2>
+    <ul>
+        <li>Meest speculatief. Bij voorkeur met opties spelen.</li>
+    </ul>
+
+    <h2>Money Management</h2>
+    <ul>
+        <li>Verliezen snel beperken, winsten laten lopen.</li>
+        <li>Positiegrootte afstemmen op max risico.</li>
+        <li>Bij +50% boven SL: deel winst nemen of stop opschuiven.</li>
+        <li>Kers & taart: aandelen/futures + opties.</li>
+        <li>Nooit big losses.</li>
+    </ul>
+
+    <h2>Timeframe</h2>
+    <p>Gebruik vooral de <strong>week- en maandgrafiek</strong>.</p>
+
+    <div class="disclaimer">
+        Samenvatting gebaseerd op posts van @JDB_trading.<br>Geen financieel advies.
+    </div>
 </body>
 </html>
