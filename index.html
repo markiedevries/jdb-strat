@@ -1,106 +1,118 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JDB Trading Strategie</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #2d3748; }
-        h1 { color: #1a365d; text-align: center; border-bottom: 3px solid #2c5282; padding-bottom: 10px; }
-        h2 { color: #2c5282; margin-top: 30px; border-left: 4px solid #2c5282; padding-left: 12px; }
-        h3 { color: #2d3748; }
-        .chart { margin: 20px 0; text-align: center; }
-        .chart img { max-width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; }
-        .chart-caption { font-style: italic; color: #718096; font-size: 0.9em; margin-top: 8px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 6px; }
-        .disclaimer { font-size: 0.85em; color: #718096; text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px; }
-        .highlight { background: #ebf8ff; padding: 12px; border-radius: 6px; margin: 15px 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JDB Trading Strategie – Uitgebreid met Voorbeelden</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.65;max-width:960px;margin:0 auto;padding:20px;color:#2d3748;background:#f7fafc;}
+h1{color:#1a365d;text-align:center;border-bottom:3px solid #2c5282;padding-bottom:12px;}
+h2{color:#2c5282;margin-top:40px;border-left:5px solid #2c5282;padding-left:12px;}
+h3{color:#2d3748;margin-top:24px;}
+.chart{margin:25px 0;text-align:center;background:white;padding:15px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+.chart img{max-width:100%;border-radius:6px;}
+.caption{font-style:italic;color:#718096;font-size:0.95em;margin-top:8px;}
+ul{padding-left:22px;}
+li{margin-bottom:8px;}
+.box{background:#ebf8ff;padding:14px 18px;border-radius:8px;margin:18px 0;border-left:4px solid #3182ce;}
+.long{border-left-color:#38a169;background:#f0fff4;}
+.short{border-left-color:#e53e3e;background:#fff5f5;}
+.disclaimer{font-size:0.85em;color:#718096;text-align:center;margin-top:50px;padding-top:20px;border-top:1px solid #e2e8f0;}
+</style>
 </head>
 <body>
-    <h1>JDB Trading Strategie</h1>
-    <p style="text-align:center; color:#4a5568;">Volledige samenvatting met illustratieve charts van @JDB_trading</p>
+<h1>JDB Trading Strategie</h1>
+<p style="text-align:center;color:#4a5568;">Uitgebreide versie met regels, componenten en voorbeelden (long & short)</p>
 
-    <h2>Overzicht</h2>
-    <p>De JDB-strategie is gericht op het traden van <strong>kruispunten</strong> met een sterke focus op risk/reward en money management. JDB werkt bijna uitsluitend met langere timeframes (week- en maandgrafieken).</p>
+<div class="box">
+<strong>Kern:</strong> Kruispunten traden met sterke focus op risk/reward. Vooral week- en maandgrafieken. Indicatoren: SMA/EMA 20/50/200, Bollinger Bands, Fibonacci 50%/61.8%, RSI, prijsactie.
+</div>
 
-    <h3>Gebruikte indicatoren</h3>
-    <ul>
-        <li>SMA/EMA 20, 50 en 200</li>
-        <li>Bollinger Bands</li>
-        <li>Fibonacci retracement (vooral 50% en 61.8%)</li>
-        <li>RSI (voor divergenties)</li>
-        <li>Prijsactie (blow-off tops / puntdak, parabolische moves)</li>
-    </ul>
+<h2>1. Dominante MA-component (Component 1)</h2>
+<p>Zoek de dominante MA op het dominante timeframe (week of maand). Voorkeur voor MA20 (groot gat naar MA200).</p>
+<ul>
+<li>Minimaal ~70 candles boven de MA in bullmarket (40 in bearmarket) met meerdere raakpunten.</li>
+<li>Hoe langer boven/onder de kortste MA, hoe sterker de tegengestelde beweging bij breuk.</li>
+</ul>
+<h3>Entries</h3>
+<ul>
+<li><strong>Doorbraak</strong> (slotcandle telt)</li>
+<li><strong>Pullback</strong> (intraday)</li>
+</ul>
+<h3>Targets & Stoploss</h3>
+<ul>
+<li>MA20 breekt → doel MA50 → daarna MA200</li>
+<li>Bij doorbraak: eerst ruimere stop, later meeschuiven met de MA</li>
+<li>Bij pullback: stop direct een stukje buiten de MA</li>
+</ul>
 
-    <div class="highlight">De strategie bestaat uit <strong>4 componenten</strong>. Component 1 en 2 zijn het meest geschikt voor beginners.</div>
+<div class="chart short">
+<img src="https://pbs.twimg.com/media/HA9cKCaWUAAZR7b.png" alt="Nasdaq dominante MA">
+<div class="caption"><strong>Short voorbeeld:</strong> Nasdaq 2021/2022 week – lange tijd boven EMA20 (groen), groot gat naar EMA200 (rood). Doorbraak gaf sterk shortsignaal.</div>
+</div>
 
-    <h2>1. Dominante MA-component</h2>
-    <h3>Regels voor een valide set-up</h3>
-    <ul>
-        <li>Zoek de <strong>dominante MA</strong> op het <strong>dominante timeframe</strong> (week of maand).</li>
-        <li>Voorkeur: <strong>MA20</strong> → groot gat naar de MA200.</li>
-        <li>Minimaal <strong>70 candles</strong> boven de dominante MA in een bullmarket (40 in bearmarket), met meerdere raakpunten.</li>
-        <li>Hoe langer de prijs boven/onder de kortste MA zit, hoe sterker de tegengestelde beweging bij een breuk.</li>
-    </ul>
+<div class="chart">
+<img src="https://pbs.twimg.com/media/HA9cL_IbsAAsYBg.png" alt="WKL maandgrafiek">
+<div class="caption"><strong>Long concept:</strong> Maandgrafiek met dominante MA20 over lange periode. Spiegelbeeld van short-setups.</div>
+</div>
 
-    <h3>Entries</h3>
-    <ul>
-        <li><strong>Doorbraak</strong> van de dominante MA (slotcandle telt).</li>
-        <li><strong>Pullback</strong> naar de dominante MA (intraday).</li>
-    </ul>
+<h2>2. Retracement-strategie (Component 2 – favoriet)</h2>
+<p>Typische short-strategie. Alleen na blow-off top (puntdak) en/of doorbraak dominante MA. Nooit zomaar in een bullmarket.</p>
+<ul>
+<li><strong>Entry short:</strong> exact op 50%</li>
+<li><strong>Stoploss:</strong> stukje boven 61.8% (±70%)</li>
+<li><strong>Target:</strong> altijd MA200 op dominante timeframe</li>
+</ul>
 
-    <h3>Targets & Stoploss</h3>
-    <ul>
-        <li>Breekt MA20 → doel MA50. Breekt MA50 → doel MA200.</li>
-        <li>Bij doorbraak eerst ruimere stop, daarna meeschuiven met de MA.</li>
-        <li>Bij pullback: stop direct een stukje buiten de MA.</li>
-    </ul>
+<div class="chart short">
+<img src="https://pbs.twimg.com/media/G1Nu7zIW8AAQBYi.png" alt="NVDA retracement">
+<div class="caption"><strong>Short voorbeeld:</strong> NVDA – blow-off top + 50% retracement. Entry short op 50%, SL boven 61.8%.</div>
+</div>
 
-    <div class="chart">
-        <img src="https://pbs.twimg.com/media/HA9cKCaWUAAZR7b.png" alt="Nasdaq dominante MA">
-        <div class="chart-caption">Nasdaq 2021/2022 week – EMA20 (groen) dominant, groot gat naar EMA200 (rood).</div>
-    </div>
+<div class="chart short">
+<img src="https://pbs.twimg.com/media/G_51D7-WQAAgauA.png" alt="Goud">
+<div class="caption"><strong>Potentieel short (goud):</strong> 120+ candles boven dominante MA20 week, groot gat naar MA200. Klassieke setup voor mogelijke blow-off + retracement.</div>
+</div>
 
-    <h2>2. Retracement-strategie (favoriet)</h2>
-    <p>Alleen toepassen na een <strong>blow-off top</strong> en/of doorbraak dominante MA. Nooit zomaar in een bullmarket.</p>
-    <ul>
-        <li><strong>Entry short</strong>: exact op <strong>50%</strong>.</li>
-        <li><strong>Stoploss</strong>: stukje boven 61.8% (±70%).</li>
-        <li><strong>Target</strong>: altijd de <strong>MA200</strong>.</li>
-    </ul>
+<div class="chart short">
+<img src="https://pbs.twimg.com/media/HAEeMkpW0AAoCDB.png" alt="ZEC">
+<div class="caption"><strong>Short voorbeeld (ZEC):</strong> Blow-off top → 50-61.8% retracement → koersdoel rode lijn.</div>
+</div>
 
-    <div class="chart">
-        <img src="https://pbs.twimg.com/media/G1Nu7zIW8AAQBYi.png" alt="NVDA retracement">
-        <div class="chart-caption">NVDA – blow-off top + Fibonacci. Entry op 50%, SL boven 61.8%.</div>
-    </div>
+<h2>3. Bollinger Bands (Component 3)</h2>
+<ul>
+<li><strong>Long:</strong> onderkant band in sterke bullmarket of na bodemproces</li>
+<li><strong>Short:</strong> bovenkant band in sterke bearmarket of na topproces</li>
+<li>Stop een stukje buiten de band. Meer ervaring nodig.</li>
+</ul>
+<p><em>Combinatie met retracement geeft extra sterk shortsignaal (dubbel kruispunt).</em></p>
 
-    <h2>3. Bollinger Bands</h2>
-    <ul>
-        <li>Long op onderkant in bullmarket / short op bovenkant in bearmarket.</li>
-        <li>Stop een stukje buiten de band. Meer ervaring nodig.</li>
-    </ul>
+<h2>4. Divergenties (Component 4)</h2>
+<ul>
+<li>Positieve divergentie = speculatief long</li>
+<li>Negatieve divergentie = speculatief short</li>
+<li>Hoge foutmarge → bij voorkeur met opties</li>
+</ul>
 
-    <h2>4. Divergenties</h2>
-    <ul>
-        <li>Meest speculatief. Bij voorkeur met opties spelen.</li>
-    </ul>
+<h2>Money Management</h2>
+<ul>
+<li>Verliezen snel beperken, winsten laten lopen</li>
+<li>Positiegrootte afstemmen op max risico</li>
+<li>Bij +50% boven SL: deel winst nemen of stop opschuiven</li>
+<li>Kers & taart: aandelen/futures + opties</li>
+<li>Nooit big losses</li>
+</ul>
 
-    <h2>Money Management</h2>
-    <ul>
-        <li>Verliezen snel beperken, winsten laten lopen.</li>
-        <li>Positiegrootte afstemmen op max risico.</li>
-        <li>Bij +50% boven SL: deel winst nemen of stop opschuiven.</li>
-        <li>Kers & taart: aandelen/futures + opties.</li>
-        <li>Nooit big losses.</li>
-    </ul>
+<h2>Timeframe</h2>
+<p>Vooral <strong>week- en maandgrafieken</strong>. Daytrading is niet de bedoeling.</p>
 
-    <h2>Timeframe</h2>
-    <p>Gebruik vooral de <strong>week- en maandgrafiek</strong>.</p>
+<div class="box">
+<strong>Tip:</strong> De sterkste signalen ontstaan bij meerdere componenten tegelijk (retracement + Bollinger + MA).
+</div>
 
-    <div class="disclaimer">
-        Samenvatting gebaseerd op posts van @JDB_trading.<br>Geen financieel advies.
-    </div>
+<div class="disclaimer">
+Samenvatting gebaseerd op posts van @JDB_trading.<br>
+Geen financieel advies. Handel altijd op eigen risico.
+</div>
 </body>
 </html>
