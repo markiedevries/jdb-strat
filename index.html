@@ -2,228 +2,222 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JDB Trading Aanpak – Overzicht</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JDB Trading Aanpak – Regels, voorbeelden en calculator</title>
 <style>
-:root {
-  --bg: #ffffff;
-  --text: #1a1a1a;
-  --card: #f8f9fa;
-  --border: #dee2e6;
-  --accent: #0d6efd;
-  --confirmed: #198754;
-  --derived: #fd7e14;
-  --uncertain: #6c757d;
-  --danger: #dc3545;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121212;
-    --text: #e9ecef;
-    --card: #1e1e1e;
-    --border: #343a40;
-    --accent: #4dabf7;
-    --confirmed: #20c997;
-    --derived: #ffc107;
-    --uncertain: #adb5bd;
-  }
-}
-[data-theme="light"] {
-  --bg: #ffffff; --text: #1a1a1a; --card: #f8f9fa; --border: #dee2e6;
-  --accent: #0d6efd; --confirmed: #198754; --derived: #fd7e14; --uncertain: #6c757d;
-}
-[data-theme="dark"] {
-  --bg: #121212; --text: #e9ecef; --card: #1e1e1e; --border: #343a40;
-  --accent: #4dabf7; --confirmed: #20c997; --derived: #ffc107; --uncertain: #adb5bd;
-}
-body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 1rem; max-width: 1000px; margin-left: auto; margin-right: auto; }
-h1, h2, h3 { color: var(--accent); }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
-.label { font-size: 0.75rem; font-weight: bold; padding: 0.15rem 0.4rem; border-radius: 4px; margin-left: 0.5rem; }
-.bevestigd { background: var(--confirmed); color: white; }
-.afgeleid { background: var(--derived); color: black; }
-.onzeker { background: var(--uncertain); color: white; }
-.checklist { list-style: none; padding-left: 0; }
-.checklist li::before { content: "☐ "; }
-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-th, td { border: 1px solid var(--border); padding: 0.5rem; text-align: left; }
-th { background: var(--card); }
-.disclaimer { background: #fff3cd; color: #856404; padding: 1rem; border-radius: 8px; margin: 2rem 0; border: 1px solid #ffeeba; }
-[data-theme="dark"] .disclaimer { background: #332701; color: #ffc107; border-color: #665200; }
-svg { max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 4px; margin: 0.5rem 0; background: var(--card); }
-.theme-toggle { position: fixed; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; }
-@media (max-width: 600px) { body { padding: 0.5rem; } table { font-size: 0.8rem; } }
+:root{--bg:#fff;--text:#1a1a1a;--card:#f6f7f9;--border:#d9dde3;--accent:#0b5ed7;--ok:#146c43;--grok:#b45309;--bad:#b02a37;--mute:#5c636a}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121416;--text:#e8eaed;--card:#1c1f23;--border:#33383e;--accent:#6ea8fe;--ok:#4ade80;--grok:#fbbf24;--bad:#f87171;--mute:#9aa1a9}}
+:root[data-theme="dark"]{--bg:#121416;--text:#e8eaed;--card:#1c1f23;--border:#33383e;--accent:#6ea8fe;--ok:#4ade80;--grok:#fbbf24;--bad:#f87171;--mute:#9aa1a9}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;margin:0 auto;padding:1rem;max-width:960px}
+h1,h2,h3{color:var(--accent);line-height:1.25}
+h1{margin-top:2.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;padding:.1rem .45rem;border-radius:4px;border:1px solid currentColor;margin-left:.4rem;vertical-align:middle;white-space:nowrap}
+.t-ok{color:var(--ok)}.t-grok{color:var(--grok)}.t-bad{color:var(--bad)}
+.warn{border-left:5px solid var(--bad)}
+.note{border-left:5px solid var(--grok)}
+.checklist{list-style:none;padding-left:0}.checklist li::before{content:"☐ "}
+.tblwrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin:.6rem 0}
+th,td{border:1px solid var(--border);padding:.45rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--card)}
+svg{max-width:100%;height:auto;border:1px solid var(--border);border-radius:6px;background:var(--bg)}
+svg text{fill:var(--text);font-size:11px}
+label{display:block;margin:.4rem 0}
+input,select,button{font:inherit;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);max-width:100%}
+button{background:var(--accent);color:#fff;border:0;cursor:pointer}
+.theme{position:absolute;top:1rem;right:1rem;padding:.3rem .7rem;font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem 1rem}
+#res{margin-top:1rem;font-weight:600}
 </style>
 </head>
 <body>
-<button class="theme-toggle" onclick="toggleTheme()">Thema wisselen</button>
-
-<h1>JDB Trading Aanpak</h1>
-<p>Samenvatting op basis van posts van @JDB_trading. Alleen informatie uit zijn eigen uitleg is gebruikt.</p>
+<button class="theme" onclick="tt()">Thema</button>
+<h1 style="margin-top:.5rem">JDB Trading Aanpak</h1>
+<p>Regels, voorbeelden en een calculator, gebaseerd op de posts van @JDB_trading. Versie met eerlijke bronlabels: sommige regels zijn extern gecontroleerd, andere komen alleen uit een Grok-samenvatting.</p>
 
 <div class="card">
-  <h2>1. Samenvatting in 5 regels</h2>
-  <ol>
-    <li>Vind de dominante MA (SMA/EMA 20/50/200) op het dominante timeframe (bij voorkeur week of maand).</li>
-    <li>Een sterk signaal ontstaat na minimaal 70 candles boven de MA in een bullmarket of 40 candles onder in een bearmarket (slotcandle telt, 1 foutieve candle mag).</li>
-    <li>Trade kruispunten: doorbraak of pullback van de dominante MA, 50% retracement ná blow-off of MA-doorbraak, of Bollinger-randen.</li>
-    <li>Target is meestal de volgende MA of de MA200; stoploss ligt net buiten het signaalniveau.</li>
-    <li>Risico per trade idealiter 1-2% (max 3%); gebruik opties als “kers” bij retracements voor extra winstpotentieel.</li>
-  </ol>
+<strong>Betekenis van de labels</strong><br>
+<span class="tag t-ok">EXTERN</span> ook bevestigd door een onafhankelijke bron (TradingView-indicator “JDB MA Breakout”).<br>
+<span class="tag t-grok">GROK</span> staat in de samenvatting van Grok, nog niet nagelopen in de originele post.<br>
+<span class="tag t-bad">TEGENSTRIJDIG</span> bronnen spreken elkaar tegen. Eerst zelf controleren.
+</div>
+
+<div class="card warn">
+<h2>Let op: de candle-regel is niet eenduidig <span class="tag t-bad">TEGENSTRIJDIG</span></h2>
+<div class="tblwrap"><table>
+<tr><th>Bron</th><th>Regel</th></tr>
+<tr><td>Grok-samenvatting</td><td>Minimaal ~70 candles boven de MA in een bullmarket, ~40 in een bearmarket.</td></tr>
+<tr><td>TradingView-indicator</td><td>Minimaal 70 candles onder de MA voor koopsignalen, 40 erboven voor verkoopsignalen.</td></tr>
+</table></div>
+<p>Het verschil is groot: bij Grok geldt 70 voor een short na een lange bullrun, bij de indicator voor een long na een lange periode onder de MA. Open de originele posts (zie bronnen) en kijk wat JDB zelf zegt voordat je hier op handelt.</p>
 </div>
 
 <div class="card">
-  <h2>2. Beslisboom</h2>
-  <ul>
-    <li><strong>Sterke bulltrend met ≥70 candles boven dominante MA20 + groot gat naar MA200</strong> → Wacht op doorbraak (slot) voor short of pullback voor long. <span class="label bevestigd">BEVESTIGD</span></li>
-    <li><strong>Na blow-off top of doorbraak dominante MA</strong> → Short op 50% Fibonacci, stop ≈70%, target MA200. <span class="label bevestigd">BEVESTIGD</span></li>
-    <li><strong>Onderkant Bollinger na lange consolidatie</strong> → Long-kruispunt (vooral week). <span class="label bevestigd">BEVESTIGD</span></li>
-    <li><strong>Positieve RSI-divergentie</strong> → Speculatieve long (bij voorkeur met opties). <span class="label bevestigd">BEVESTIGD</span></li>
-    <li><strong>Meerdere componenten tegelijk</strong> → Hogere slagingskans (dubbel kruispunt). <span class="label bevestigd">BEVESTIGD</span></li>
-  </ul>
+<h2>1. Samenvatting in 5 regels</h2>
+<ol>
+<li>Zoek de dominante MA (SMA/EMA 20, 50 of 200) op het dominante timeframe: week of maand. <span class="tag t-ok">EXTERN</span></li>
+<li>Hoe langer de koers aan één kant van die MA bleef, hoe krachtiger de beweging bij een breuk. Het aantal candles: zie waarschuwing hierboven. <span class="tag t-bad">TEGENSTRIJDIG</span></li>
+<li>Handel “kruispunten”: MA-doorbraak of pullback, 50% retracement na een blow-off top, Bollinger-randen, of divergentie. <span class="tag t-grok">GROK</span></li>
+<li>Target is meestal de volgende MA, bij retracements de MA200. Stoploss staat net voorbij het signaalniveau. <span class="tag t-grok">GROK</span></li>
+<li>Risico per trade klein houden (1–2%, max 3%) en verliezen snel beperken. <span class="tag t-grok">GROK</span></li>
+</ol>
 </div>
 
 <div class="card">
-  <h2>3. Componenten</h2>
+<h2>2. Welke setup past bij welke situatie?</h2>
+<div class="tblwrap"><table>
+<tr><th>Situatie</th><th>Setup</th><th>Label</th></tr>
+<tr><td>Koers lang boven dominante MA20, groot gat naar MA200, slotcandle breekt de MA</td><td>Short op doorbraak, doel MA50 daarna MA200</td><td><span class="tag t-grok">GROK</span></td></tr>
+<tr><td>Koers lang onder dominante MA, slotcandle breekt erboven</td><td>Long op doorbraak, of long op pullback naar de MA</td><td><span class="tag t-ok">EXTERN</span></td></tr>
+<tr><td>Puntdak (blow-off top) of gebroken dominante MA, koers herstelt omhoog</td><td>Short op 50% retracement</td><td><span class="tag t-grok">GROK</span></td></tr>
+<tr><td>Koers raakt Bollinger-onderkant in sterke bullmarkt of na bodemproces</td><td>Long-kruispunt</td><td><span class="tag t-grok">GROK</span></td></tr>
+<tr><td>Meerdere signalen op één niveau (MA + Fibonacci + Bollinger)</td><td>“Dubbel kruispunt”, sterker signaal</td><td><span class="tag t-grok">GROK</span></td></tr>
+<tr><td>Prijs maakt lager dal, RSI hoger dal (of omgekeerd)</td><td>Speculatieve trade, bij voorkeur met opties</td><td><span class="tag t-grok">GROK</span></td></tr>
+</table></div>
+</div>
 
-  <h3>MA-doorbraak / pullback</h3>
-  <p>Uitleg: Zoek de MA die de koers lange tijd respecteert. Hoe langer de koers erboven (bull) of eronder (bear) blijft, hoe sterker de tegenbeweging als die breekt. Voorkeur voor MA20 vanwege groot gat naar MA200. <span class="label bevestigd">BEVESTIGD</span></p>
-  <ul class="checklist">
-    <li>Dominante MA gevonden (20/50/200 SMA of EMA) met meerdere raakpunten</li>
-    <li>≥70 candles boven in bull of ≥40 onder in bear (slotcandle)</li>
-    <li>Doorbraak = slotcandle buiten de MA, of pullback = intraday terugtest</li>
-  </ul>
-  <p><strong>Stoploss & target:</strong> Initieel ruimer (ademruimte of onder/boven breakout-candle), daarna meeschuiven met de MA. Target = volgende MA (MA20→MA50→MA200). <span class="label bevestigd">BEVESTIGD</span></p>
-  <p><strong>Veelgemaakte fouten:</strong> MA forceren zodat die “dominant” lijkt; shorten zonder voldoende candles; negeren van 1-foutieve-candle-regel.</p>
+<h1>3. Componenten in detail</h1>
 
-  <h4>Voorbeeld 1: ASML long (sept 2025)</h4>
-  <p>Markt: ASML, timeframe: week. Doorbraak dominante MA50 na bearmarket-regel (40 candles). <a href="https://x.com/JDB_trading/status/2021952259739861251" target="_blank">Bron</a></p>
-  <svg viewBox="0 0 400 150" width="100%"><text x="10" y="20" font-size="12">Illustratie, geen echte trade</text><polyline points="20,120 80,100 140,110 200,80 260,60 320,40 380,30" fill="none" stroke="#198754" stroke-width="2"/><line x1="20" y1="90" x2="380" y2="70" stroke="#0d6efd" stroke-width="2"/><text x="300" y="60" font-size="10">MA50</text></svg>
-  <table><tr><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr><tr><td>Slot boven MA50</td><td>Iets onder MA50</td><td>Volgende MA / hoger</td><td>AFGELEID (hoog)</td></tr></table>
-
-  <h4>Voorbeeld 2: Nasdaq100 2021/2022 short-setup</h4>
-  <p>Weekgrafiek, ≥70 candles boven dominante MA20, groot gat naar MA200. <a href="https://x.com/JDB_trading/status/2021939574591623348" target="_blank">Bron</a></p>
-  <svg viewBox="0 0 400 150" width="100%"><text x="10" y="20" font-size="12">Illustratie, geen echte trade</text><polyline points="20,40 100,30 180,25 260,20 340,50 380,80" fill="none" stroke="#dc3545" stroke-width="2"/><line x1="20" y1="60" x2="380" y2="100" stroke="#0d6efd"/><text x="300" y="110" font-size="10">MA200</text></svg>
-  <table><tr><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr><tr><td>Slot onder MA20</td><td>Ruim boven MA20</td><td>MA50 daarna MA200</td><td>AFGELEID (zeer hoog)</td></tr></table>
-
-  <h3>Retracement-strategie</h3>
-  <p>Uitleg: Alleen ná doorbraak dominante MA en/of blow-off top. Speculeert op grote correctie. Favoriete component van JDB. <span class="label bevestigd">BEVESTIGD</span></p>
-  <ul class="checklist">
-    <li>Blow-off top (puntdak) of doorbraak dominante MA</li>
-    <li>Fibonacci van recente top (100%) naar recente bodem (0%)</li>
-    <li>Short exact op 50%</li>
-  </ul>
-  <p><strong>Stoploss & target:</strong> Stop ≈70% (1/5 boven 61,8%). Target altijd MA200 op dominante timeframe. Alleen short. <span class="label bevestigd">BEVESTIGD</span></p>
-  <p><strong>Veelgemaakte fouten:</strong> Shorten op elke 50% dip in een bullmarket; stop te strak; geen rekening houden met gaps.</p>
-
-  <h4>Voorbeeld 1: NVDA blow-off (2021-2022)</h4>
-  <p>Weekgrafiek, duidelijk puntdak, entry 50%, stop niet geraakt. <a href="https://x.com/JDB_trading/status/1969044118224478450" target="_blank">Bron</a></p>
-  <svg viewBox="0 0 400 160" width="100%"><text x="10" y="15" font-size="12">Illustratie, geen echte trade</text><polyline points="20,120 100,90 160,40 200,30 240,70 300,100 380,130" fill="none" stroke="#dc3545" stroke-width="2"/><line x1="160" y1="30" x2="160" y2="140" stroke="#fd7e14" stroke-dasharray="4"/><text x="165" y="50" font-size="10">100%</text><text x="165" y="90" font-size="10">50%</text></svg>
-  <table><tr><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr><tr><td>50%</td><td>≈70%</td><td>MA200</td><td>AFGELEID (extreem hoog)</td></tr></table>
-
-  <h4>Voorbeeld 2: SLV / zilver retracement</h4>
-  <p>Meerdere pogingen met puts + spot hedge, entry rond 50-61,8%. <a href="https://x.com/JDB_trading/status/2019803870822588778" target="_blank">Bron</a></p>
-  <table><tr><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr><tr><td>50% (of meerdere pogingen)</td><td>Boven 61,8%</td><td>MA200 / lagere levels</td><td>AFGELEID (hoog, met opties)</td></tr></table>
-
-  <h3>Bollinger Bands</h3>
-  <p>Uitleg: Standaardinstelling (20,2). Onderkant na consolidatie = long-kruispunt; bovenkant = short-kruispunt. Combineert vaak met andere componenten. <span class="label bevestigd">BEVESTIGD</span> (gebruik) / standaard settings bevestigd door gebruiker.</p>
-  <ul class="checklist">
-    <li>Onderkant band na lange zijwaartse consolidatie (long)</li>
-    <li>Bovenkant band in bear of bij afvlakkende band (short)</li>
-  </ul>
-  <p><strong>Stoploss & target:</strong> Stop iets buiten de band. Target contextafhankelijk (volgende MA of trend). <span class="label bevestigd">BEVESTIGD</span></p>
-  <p><strong>Veelgemaakte fouten:</strong> Handelen op elke band-touch zonder context; negeren van consolidatie.</p>
-
-  <h4>Voorbeeld: Olie (CL) 2022</h4>
-  <p>Top tegen bovenkant Bollinger + 61,8%, target MA200. “SPOT ON”. <a href="https://x.com/JDB_trading/status/2038578505554731372" target="_blank">Bron</a></p>
-  <table><tr><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr><tr><td>Bovenkant band / 61,8%</td><td>Boven band</td><td>MA200</td><td>AFGELEID (hoog)</td></tr></table>
-
-  <h3>Divergenties</h3>
-  <p>Uitleg: RSI (standaard). Meest speculatieve component. Positief = long, negatief = short. Liever met opties. <span class="label bevestigd">BEVESTIGD</span></p>
-  <ul class="checklist">
-    <li>Positieve RSI-divergentie voor long (of negatieve voor short)</li>
-    <li>Bij voorkeur confirmatie (bijv. doorbraak EMA20)</li>
-  </ul>
-  <p><strong>Stoploss & target:</strong> Lastig te bepalen (kan lang aanhouden). Daarom vaak opties (volledige inleg = stop). <span class="label bevestigd">BEVESTIGD</span></p>
-  <p><strong>Veelgemaakte fouten:</strong> Te vroeg instappen; te strakke stop; negeren dat divergentie kan verdwijnen.</p>
-
-  <h4>Voorbeeld: WKL positieve divergentie</h4>
-  <p>Rond SMA200 maand. Speculatief koopsignaal. <a href="https://x.com/JDB_trading/status/2056458836467192313" target="_blank">Bron</a></p>
-  <table><tr><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr><tr><td>Divergentie + confirmatie</td><td>Opties of ruim</td><td>Hoger / MA</td><td>AFGELEID (variabel)</td></tr></table>
+<div class="card">
+<h2>Component 1: Dominante MA, doorbraak of pullback</h2>
+<p>De dominante MA is de gemiddelde die de koers lange tijd respecteert, met meerdere raakpunten. JDB geeft de voorkeur aan MA20 omdat die ver van de MA200 ligt, zodat er veel ruimte is voor een beweging. <span class="tag t-grok">GROK</span></p>
+<ul class="checklist">
+<li>Timeframe is week of maand</li>
+<li>Meerdere raakpunten met dezelfde MA</li>
+<li>Voldoende candles aan één kant (aantal: controleer de regel hierboven)</li>
+<li>Doorbraak: de slotcandle sluit voorbij de MA</li>
+<li>Pullback: de koers test de MA van de andere kant, bijvoorbeeld intraday</li>
+<li>Gat naar de volgende MA (MA50, MA200) is groot genoeg voor een goede risk/reward</li>
+</ul>
+<p><strong>Stoploss</strong>: bij een doorbraak eerst ruim, later meeschuiven met de MA. Bij een pullback net voorbij de MA. <span class="tag t-grok">GROK</span><br>
+<strong>Target</strong>: MA20 gebroken → MA50 → MA200. <span class="tag t-grok">GROK</span></p>
+<svg viewBox="0 0 420 170" role="img" aria-label="Schematisch: koers breekt door MA20">
+<text x="8" y="14">Illustratie, geen echte trade</text>
+<polyline points="20,70 70,62 120,56 170,50 220,46 260,60 300,95 350,115 400,128" fill="none" stroke="#dc3545" stroke-width="2"/>
+<polyline points="20,80 400,82" fill="none" stroke="#0b5ed7" stroke-width="2" stroke-dasharray="1"/>
+<line x1="20" y1="82" x2="400" y2="82" stroke="#0b5ed7" stroke-width="2"/>
+<line x1="20" y1="132" x2="400" y2="132" stroke="#fd7e14" stroke-width="2"/>
+<text x="330" y="76">MA20</text><text x="330" y="148">MA200</text>
+<circle cx="285" cy="82" r="5" fill="#dc3545"/><text x="190" y="100">slotcandle onder MA = short</text>
+</svg>
+<p><strong>Veelgemaakte fouten</strong>: een MA “dominant” maken die dat niet is, shorten zonder voldoende candles, instappen op een intraday-breuk zonder slotcandle.</p>
 </div>
 
 <div class="card">
-  <h2>4. Combinatie-signalen</h2>
-  <p>Wanneer meerdere componenten samenvallen (bijv. 50% retracement + bovenkant Bollinger + belangrijke MA), noemt JDB dit een “dubbel kruispunt” met extra hoge slagingskans. Voorbeeld: mei 2008 voor de financiële crisis. <span class="label bevestigd">BEVESTIGD</span></p>
+<h2>Component 2: Retracement (favoriet van JDB)</h2>
+<p>Een short-strategie die alleen geldt na een blow-off top (puntdak) en/of een doorbraak van de dominante MA. Nooit zomaar in een bullmarkt. <span class="tag t-grok">GROK</span></p>
+<ul class="checklist">
+<li>Blow-off top of gebroken dominante MA aanwezig</li>
+<li>Fibonacci getrokken van de laagste bodem na de top (0%) naar de top (100%)</li>
+<li>Entry short op 50%</li>
+<li>Stoploss net boven 61,8%, ongeveer 70%</li>
+<li>Target: MA200 op het dominante timeframe</li>
+</ul>
+<p>Rekenvoorbeeld met <em>verzonnen</em> getallen: top 200, bodem 100. Het 50%-niveau ligt op 150, 61,8% op 161,8 en 70% op 170. Ligt de MA200 op 105, dan is het risico 20 (170 − 150) en de winst 45 (150 − 105). Dat is een risk/reward van 1 : 2,25.</p>
+<svg viewBox="0 0 420 190" role="img" aria-label="Schematisch retracement">
+<text x="8" y="14">Illustratie met verzonnen getallen, geen echte trade</text>
+<polyline points="20,150 80,100 130,30 170,120 200,140 250,95 300,120 360,160 400,168" fill="none" stroke="#dc3545" stroke-width="2"/>
+<line x1="130" y1="30" x2="400" y2="30" stroke="#6c757d" stroke-dasharray="4"/><text x="335" y="26">100% = 200</text>
+<line x1="130" y1="95" x2="400" y2="95" stroke="#198754"/><text x="335" y="91">50% = 150 entry</text>
+<line x1="130" y1="82" x2="400" y2="82" stroke="#fd7e14" stroke-dasharray="4"/><text x="318" y="78">70% = 170 stop</text>
+<line x1="130" y1="140" x2="400" y2="140" stroke="#6c757d" stroke-dasharray="4"/><text x="335" y="136">0% = 100</text>
+<line x1="130" y1="165" x2="400" y2="165" stroke="#0b5ed7"/><text x="20" y="180">MA200 = 105 target</text>
+</svg>
+<p><strong>Veelgemaakte fouten</strong>: elke dip naar 50% in een bullmarkt shorten, stop te strak, geen rekening houden met gaps, ontbrekende blow-off top.</p>
 </div>
 
 <div class="card">
-  <h2>5. Money management</h2>
-  <p>Positiegrootte altijd afgestemd op maximaal risico. Idealiter 1-2% per trade (max 3%). <span class="label bevestigd">BEVESTIGD</span></p>
-  <p><strong>Rekenvoorbeeld</strong> (kapitaal €10.000, risico 1%):</p>
-  <ul>
-    <li>Max verlies = €100</li>
-    <li>Entry 100, stop 95 → risico per aandeel = €5</li>
-    <li>Aantal aandelen = 100 / 5 = 20</li>
-  </ul>
-  <p>Bij retracement: aandelen/futures short = “taart”, puts = “kers”. Deelpositie afbouwen bij +50%. <span class="label bevestigd">BEVESTIGD</span></p>
+<h2>Component 3: Bollinger Bands</h2>
+<p>Instelling 20,2 en gebruik op week/maand. <span class="tag t-ok">EXTERN</span> Onderkant van de band is een long-kruispunt in een sterke bullmarkt of na een bodemproces; bovenkant een short-kruispunt in een sterke bearmarkt of na een topproces. Stop net buiten de band. <span class="tag t-grok">GROK</span></p>
+<ul class="checklist">
+<li>Context klopt: bullmarkt, bearmarkt of top-/bodemproces</li>
+<li>Band wordt geraakt op week- of maandbasis</li>
+<li>Stop net buiten de band, target volgende MA of trendniveau</li>
+<li>Extra sterk als de band samenvalt met een retracement-niveau of MA</li>
+</ul>
+<p><strong>Veelgemaakte fouten</strong>: elke bandaanraking handelen zonder trendcontext.</p>
 </div>
 
 <div class="card">
-  <h2>6. Interactieve Risk/Reward-calculator</h2>
-  <label>Entry: <input type="number" id="entry" value="100"></label><br>
-  <label>Stop: <input type="number" id="stop" value="95"></label><br>
-  <label>Target: <input type="number" id="target" value="120"></label><br>
-  <label>Kapitaal: <input type="number" id="capital" value="10000"></label><br>
-  <label>Risico %: <input type="number" id="risk" value="1" step="0.1"></label><br>
-  <button onclick="calculate()">Bereken</button>
-  <div id="result" style="margin-top:1rem; font-weight:bold;"></div>
+<h2>Component 4: Divergenties (meest speculatief)</h2>
+<p>RSI-divergentie: positief is een speculatieve long, negatief een speculatieve short. De foutmarge is hoog, dus bij voorkeur met opties zodat de inleg het maximale verlies is. <span class="tag t-grok">GROK</span></p>
+<ul class="checklist">
+<li>Prijs maakt nieuw dal/top, RSI niet</li>
+<li>Bij voorkeur een bevestiging, bijvoorbeeld doorbraak van een kortere MA</li>
+<li>Positiegrootte bepaald door de volledige optie-inleg</li>
+</ul>
+<p><strong>Veelgemaakte fouten</strong>: te vroeg instappen, divergentie die verdwijnt negeren, een gewone stop gebruiken waar de koers nog lang kan doorlopen.</p>
 </div>
 
 <div class="card">
-  <h2>7. Bronnenlijst</h2>
-  <ul>
-    <li><a href="https://x.com/JDB_trading/status/1968663365380722997" target="_blank">Component 1 – Dominante MA (sept 2025)</a></li>
-    <li><a href="https://x.com/JDB_trading/status/1969044118224478450" target="_blank">Component 2 – Retracement (sept 2025)</a></li>
-    <li><a href="https://x.com/JDB_trading/status/1833589900953936257" target="_blank">Money management & stoploss (sept 2024)</a></li>
-    <li><a href="https://x.com/JDB_trading/status/1753332353869717980" target="_blank">Stoploss les (feb 2024)</a></li>
-    <li><a href="https://x.com/JDB_trading/status/2018691197582156279" target="_blank">Gouden MA-regel (goud)</a></li>
-    <li><a href="https://x.com/JDB_trading/status/2021939574591623348" target="_blank">Beginners setup Nasdaq/WKL</a></li>
-    <li><a href="https://x.com/JDB_trading/status/2038578505554731372" target="_blank">Olie 2022 Bollinger</a></li>
-    <li><a href="https://x.com/JDB_trading/status/2019803870822588778" target="_blank">Zilver retracement</a></li>
-    <li><a href="https://x.com/JDB_trading/status/2014751575772672029" target="_blank">Max risk 1-3%</a></li>
-  </ul>
+<h2>4. Money management <span class="tag t-grok">GROK</span></h2>
+<ul>
+<li>Positiegrootte volgt uit het maximale risico, niet uit overtuiging.</li>
+<li>Risico per trade 1–2%, nooit meer dan 3% van het kapitaal.</li>
+<li>Verliezen snel beperken, winsten laten lopen.</li>
+<li>Bij een winst van ongeveer 50% van de stopafstand: deel van de winst nemen of de stop opschuiven.</li>
+<li>“Kers en taart”: de taart is de basispositie (aandelen/futures), de kers zijn opties voor extra potentieel.</li>
+</ul>
 </div>
 
-<div class="disclaimer">
-  <strong>Disclaimer:</strong> Geen financieel advies. Dit is een samenvatting van publieke posts van @JDB_trading. Shorten en opties kunnen tot grote verliezen leiden. Handel altijd op eigen risico en doe eigen onderzoek.
+<div class="card">
+<h2>5. Risk/reward-calculator</h2>
+<div class="grid">
+<label>Richting<select id="dir"><option value="long">Long</option><option value="short">Short</option></select></label>
+<label>Entry<input type="number" id="entry" value="150" step="any"></label>
+<label>Stop<input type="number" id="stop" value="170" step="any"></label>
+<label>Target<input type="number" id="target" value="105" step="any"></label>
+<label>Kapitaal (€)<input type="number" id="cap" value="10000" step="any"></label>
+<label>Risico (%)<input type="number" id="risk" value="1" step="0.1"></label>
+</div>
+<button onclick="calc()">Bereken</button>
+<div id="res"></div>
+</div>
+
+<div class="card note">
+<h2>6. Bronnen en wat je moet controleren</h2>
+<p>De datum is afgeleid uit het statusnummer van de post. Open de link en controleer of de uitleg klopt met wat hier staat.</p>
+<div class="tblwrap"><table>
+<tr><th>Onderwerp</th><th>Datum post</th><th>Opmerking</th></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/1968663365380722997" target="_blank" rel="noopener">Component 1, dominante MA</a></td><td>18 sep 2025</td><td>Hier staat de candle-regel. Controleer 70/40 en de richting.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/1969044118224478450" target="_blank" rel="noopener">Component 2, retracement (NVDA)</a></td><td>19 sep 2025</td><td>Controleer entry 50%, stop en de blow-off-voorwaarde.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/1753332353869717980" target="_blank" rel="noopener">Stoploss</a></td><td>2 feb 2024</td><td>Controleer de stop-uitleg.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/1833589900953936257" target="_blank" rel="noopener">Money management</a></td><td>10 sep 2024</td><td>Controleer de risicopercentages.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2014751575772672029" target="_blank" rel="noopener">Maximaal risico</a></td><td>23 jan 2026</td><td>Bron voor 1–3%.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2018691197582156279" target="_blank" rel="noopener">Goud, dominante MA</a></td><td>3 feb 2026</td><td>Lopend scenario, geen afgeronde trade.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2019803870822588778" target="_blank" rel="noopener">Zilver (SLV) retracement</a></td><td>6 feb 2026</td><td>Grok noemt puts en spot-hedge. Controleer de uitwerking.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2021939574591623348" target="_blank" rel="noopener">Nasdaq, beginnersuitleg</a></td><td>12 feb 2026</td><td>Voorbeeld uit 2021/2022 in een post van 2026.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2021952259739861251" target="_blank" rel="noopener">ASML</a></td><td>12 feb 2026</td><td>Eerdere versie noemde “sept 2025”. De post is van feb 2026. Controleer of het om een long gaat en welke MA.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2038578505554731372" target="_blank" rel="noopener">Olie, Bollinger</a></td><td>30 mrt 2026</td><td>Eerdere versie noemde “2022”. Controleer of het een oud voorbeeld of een recente trade is.</td></tr>
+<tr><td><a href="https://x.com/JDB_trading/status/2056458836467192313" target="_blank" rel="noopener">WKL, positieve divergentie</a></td><td>18 mei 2026</td><td>Speculatief signaal, geen uitkomst bekend.</td></tr>
+</table></div>
+<p>Voor de voorbeelden hierboven zijn entry, stop en target uit de grafieken niet gecontroleerd. Vul die in na het openen van de posts.</p>
+</div>
+
+<div class="card" style="border-color:var(--bad)">
+<strong>Disclaimer:</strong> dit is geen financieel advies. Het is een samenvatting van publieke posts, deels niet geverifieerd. Shorten, futures en opties kunnen tot grote verliezen leiden, soms meer dan je inleg. Doe eigen onderzoek en handel op eigen risico.
 </div>
 
 <script>
-function toggleTheme() {
-  const html = document.documentElement;
-  const current = html.getAttribute('data-theme');
-  if (current === 'dark') html.setAttribute('data-theme', 'light');
-  else html.setAttribute('data-theme', 'dark');
-}
-function calculate() {
-  const entry = parseFloat(document.getElementById('entry').value);
-  const stop = parseFloat(document.getElementById('stop').value);
-  const target = parseFloat(document.getElementById('target').value);
-  const capital = parseFloat(document.getElementById('capital').value);
-  const riskPct = parseFloat(document.getElementById('risk').value);
-  const riskAmount = capital * (riskPct / 100);
-  const riskPerUnit = Math.abs(entry - stop);
-  const rewardPerUnit = Math.abs(target - entry);
-  const rr = riskPerUnit > 0 ? (rewardPerUnit / riskPerUnit).toFixed(2) : 'n.v.t.';
-  const units = riskPerUnit > 0 ? Math.floor(riskAmount / riskPerUnit) : 0;
-  document.getElementById('result').innerHTML = `
-    Risico bedrag: €${riskAmount.toFixed(2)}<br>
-    Risk/Reward: 1:${rr}<br>
-    Aantal eenheden: ${units}<br>
-    Potentiële winst: €${(units * rewardPerUnit).toFixed(2)}
-  `;
-}
+function tt(){var h=document.documentElement,d=h.getAttribute('data-theme');
+if(!d){d=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+h.setAttribute('data-theme',d==='dark'?'light':'dark')}
+function f(n){return n.toLocaleString('nl-NL',{maximumFractionDigits:2})}
+function calc(){
+var d=document.getElementById('dir').value,
+e=+document.getElementById('entry').value,s=+document.getElementById('stop').value,
+t=+document.getElementById('target').value,c=+document.getElementById('cap').value,
+r=+document.getElementById('risk').value,o=document.getElementById('res');
+if(!(e>0&&s>0&&t>0&&c>0&&r>0)){o.textContent='Vul alle velden met positieve getallen in.';return}
+var ok=d==='long'?(s<e&&t>e):(s>e&&t<e);
+if(!ok){o.textContent=d==='long'?'Bij een long moet de stop onder en het target boven de entry liggen.':'Bij een short moet de stop boven en het target onder de entry liggen.';return}
+var ra=c*r/100,rp=Math.abs(e-s),wp=Math.abs(t-e),rr=wp/rp,u=Math.floor(ra/rp),val=u*e;
+var msg='Maximaal verlies: € '+f(ra)+'<br>Risk/reward: 1 : '+f(rr)+'<br>Aantal stuks: '+u+'<br>Positiewaarde: € '+f(val)+' ('+f(val/c*100)+'% van je kapitaal)<br>Winst bij target: € '+f(u*wp)+'<br>Verlies bij stop: € '+f(u*rp);
+if(rr<2)msg+='<br><span class="t-grok">Let op: risk/reward lager dan 1 : 2.</span>';
+if(val>c)msg+='<br><span class="t-bad">Let op: de positiewaarde is groter dan je kapitaal (hefboom nodig).</span>';
+o.innerHTML=msg}
 </script>
 </body>
 </html>
